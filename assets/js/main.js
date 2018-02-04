@@ -21,6 +21,24 @@
 			$body = $('body'),
 			$main = $('#main');
 
+		// Find all YouTube videos
+		var $allVideos = $("iframe[src^='//www.youtube-nocookie.com']"),
+
+		// The element that is fluid width
+		$fluidEl = $("body");
+
+		// Figure out and save aspect ratio for each video
+		$allVideos.each(function() {
+
+		$(this)
+		.data('aspectRatio', this.height / this.width)
+
+		// and remove the hard coded width/height
+		.removeAttr('height')
+		.removeAttr('width');
+
+		});
+
 		// Disable animations/transitions until the page has loaded.
 			$body.addClass('is-loading');
 
